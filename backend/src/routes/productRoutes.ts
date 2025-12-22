@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import * as productController from '../controllers/productController';
+import { authenticateToken } from '../middleware/authMiddleware';
 import { validationMiddleware } from '../middleware/validationMiddleware';
 import { CreateProductDto } from '../validation/productValidation';
 
@@ -10,11 +11,13 @@ router.get('/:id', productController.getProductDetail);
 
 router.post(
   '/', 
+  authenticateToken
+  ,
   validationMiddleware(CreateProductDto),
   productController.createProduct
 );
 
-router.put('/:id', productController.updateProduct);
-router.delete('/:id', productController.deleteProduct);
+router.put('/:id', authenticateToken, productController.updateProduct);
+router.delete('/:id', authenticateToken, productController.deleteProduct);
 
 export default router;
