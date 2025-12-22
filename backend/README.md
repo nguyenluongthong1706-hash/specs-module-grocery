@@ -10,7 +10,7 @@ Hệ thống Backend RESTful API chuyên nghiệp để quản lý kho hàng, s�
 * **Authentication:** JWT (JSON Web Token), Bcryptjs (Mã hóa mật khẩu)
 * **Validation:** Class-validator, Class-transformer (Kiểm tra dữ liệu đầu vào)
 * **Security:** Helmet (Bảo mật HTTP Header), CORS
-* **Tools:** Docker Compose, Nodemon, Postman/Thunder Client
+* **Tools:** Docker Compose, Nodemon, Postman
 
 ---
 
