@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es2016",             /* Dùng chuẩn JS hiện đại */
+    "module": "commonjs",           /* Chuẩn module của Node.js */
+    "rootDir": "./src",             /* Code nguồn nằm ở đâu? */
+    "outDir": "./dist",             /* Code sau khi build nằm ở đâu? */
+    "strict": true,                 /* Chế độ kiểm tra lỗi nghiêm ngặt */
+    "esModuleInterop": true,        /* Tương thích giữa các loại module */
+    "skipLibCheck": true,           /* Bỏ qua check file thư viện cho nhanh */
+    "experimentalDecorators": true,  // <-- Dòng quan trọng nhất để sửa lỗi này
+    "emitDecoratorMetadata": true,  // <-- Nên bật luôn để class-validator hoạt động tốt nhất
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],          /* Chỉ xử lý file trong folder src */
+  "exclude": ["node_modules"]       /* Bỏ qua folder thư viện */
+}
