@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-// 1. Tạo instance của axios
 const apiClient = axios.create({
-  // Sử dụng biến môi trường từ file .env bạn đã tạo
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api', 
+  baseURL: (import.meta.env.VITE_API_URL || 'http://localhost:3000/api/'), 
   headers: {
     'Content-Type': 'application/json',
   },
@@ -22,14 +20,15 @@ apiClient.interceptors.request.use(
   }
 );
 
-// 3. Cấu hình Response Interceptor (Xử lý lỗi tập trung)
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Nếu lỗi 401 (Unauthorized) - Token hết hạn hoặc không hợp lệ
     if (error.response?.status === 401) {
-      localStorage.removeItem('token'); // Xóa token cũ
-      window.location.href = '/login';   // Đẩy người dùng về trang đăng nhập
+      localStorage.removeItem('token'); 
+      
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }
