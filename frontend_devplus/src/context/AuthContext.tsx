@@ -1,7 +1,6 @@
 import { createContext, useState, useContext, type ReactNode } from "react";
 import { authService } from "../services/authService";
 
-// 1. Định nghĩa "khuôn mẫu" dữ liệu cho Context
 interface User {
   id: number;
   name: string;
@@ -18,11 +17,9 @@ interface AuthContextType {
   logout: () => void;
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  // Duy trì đăng nhập khi F5 trang bằng cách lấy từ localStorage
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string>(localStorage.getItem("token") || "");
 
@@ -35,7 +32,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const register = async (name: string, email: string, password: string) => {
     await authService.register({ name, email, password });
-    // After register, maybe auto login or just navigate to login
   };
 
   const logout = () => {
@@ -51,8 +47,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
 }
 
-// 3. Custom Hook
-// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
