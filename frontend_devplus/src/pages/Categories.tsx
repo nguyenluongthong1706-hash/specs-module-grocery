@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Table, Button, Modal, Form, Input, message, Card, Space } from 'antd';
 import { getCategories, createCategory, updateCategory, deleteCategory } from '../services/categoryService'; //
 
-// Định nghĩa Interface để tránh lỗi 'never'
 interface Category {
   id: string;
   name: string;
 }
 
 const Categories: React.FC = () => {
-  const [categories, setCategories] = useState<Category[]>([]); // Gán kiểu dữ liệu cụ thể
+  const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
